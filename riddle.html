@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sea Turtle Riddle Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #99ccff, #e0f7fa);
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        h1 {
+            color: #004466;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px #99ccff;
+        }
+
+        #riddle-box {
+            border: 3px solid #004466;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #b3e0ff;
+            border-radius: 15px;
+            font-size: 18px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        #riddle-box.showing {
+            transform: scale(1.05);
+            background-color: #99d6ff;
+        }
+
+        button {
+            background-color: #004466;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #006699;
+        }
+
+        .turtle-img {
+            width: 120px;
+            margin: 20px auto;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Sea Turtle Riddle Generator</h1>
+
+    <!-- Turtle Image -->
+    <img src="Sea turtle swimming in crystal waters.jpg" alt="Sea Turtle" class="turtle-img">
+
+    <!-- Riddle Box -->
+    <div id="riddle-box">Click the button to see a sea turtle riddle!</div>
+
+    <!-- Button -->
+    <button onclick="showRiddle()">Get a Riddle</button><br>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+
+    <a href="scratch.html" class="back-link">← Back to Scratch Page</a>
+    <script>
+    const riddles = [
+        "I live in the ocean, swim gracefully, and have a hard shell. Who am I? — A sea turtle",
+        "I lay eggs on sandy beaches, and the temperature of the sand decides my babies' gender. Who am I? — A sea turtle",
+        "I migrate thousands of miles across oceans, yet always return to the beach I was born on. Who am I? — A sea turtle",
+        "I have been around since the age of dinosaurs and float gracefully underwater. Who am I? — A sea turtle",
+        "I have a hard shell for protection and flippers to help me swim. Who am I? — A sea turtle"
+    ];
+
+    let currentRiddleIndex = -1; // Start with no riddle shown
+
+    function showRiddle() {
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * riddles.length);
+        } while (randomIndex === currentRiddleIndex); // Ensure a new riddle
+
+        currentRiddleIndex = randomIndex;
+        const box = document.getElementById('riddle-box');
+        box.innerText = riddles[randomIndex];
+
+        // Add animation class
+        box.classList.add('showing');
+        setTimeout(() => box.classList.remove('showing'), 400);
+    }
+</script>
+</body>
+</html>
